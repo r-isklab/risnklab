@@ -101,3 +101,14 @@ canvas { display:block; width:100%; height:auto; aspect-ratio:1; background:#080
   .intro h1 { font-size:27px; }
   .control-btn { width:44px; }
 }
+h1 {
+  color: #fff;
+}
+
+h1 span {
+  color: #2583e8;
+}
+
+h1 .lab {
+  color: #fff;
+}
