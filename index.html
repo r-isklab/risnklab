@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#080c11">
   <meta name="description" content="RiskLab — acceso a la plataforma de información G00.">
-  <title>RiskLab | Consulta API G00</title>
+  <title>RisnkLab</title>
   <link rel="icon" type="image/png" href="./favicon.png">
   <link rel="apple-touch-icon" href="./favicon.png">
   <link rel="stylesheet" href="css/style.css">
@@ -22,8 +22,8 @@
 
     <section class="intro">
       <p class="eyebrow">ACCESO CONDICIONADO</p>
-      <h1>Un objetivo. <span>25 puntos.</span></h1>
-      <p class="intro-copy">Completa el desafío para desbloquear el acceso a la plataforma de información G00.</p>
+      <h1>Ri<span>snk Lab</span></h1>
+      <p class="intro-copy">Esta página almacena las consultas a la API, aislado del repositorio Risklab.</p>
     </section>
 
     <section class="game-layout" aria-label="Juego y puntuación">
@@ -63,12 +63,13 @@
           <p id="score-status" class="score-status">25 pts para desbloquear.</p>
         </div>
         <div class="instructions">
-          <span class="eyebrow">¿CÓMO JUGAR?</span>
+          <span class="eyebrow">índice de llamadas para la API</span>
           <ul>
-            <li>Dirige la serpiente hacia las manzanas.</li>
-            <li>Cada manzana suma un punto.</li>
-            <li>Evita chocar contra los bordes y contigo mismo.</li>
-            <li>Al llegar a 25 puntos se habilitará el acceso.</li>
+            <li>Estado de la API: /exec?action=health</li>
+            <li>Último dato calculado: /exec?action=latest</li>
+            <li>Histórico mediante input: /exec?action=history&dias=251</li>
+            <li>Consulta completa por fecha: /exec?action=date&fecha=DD/MM/AAAA</li>
+            <li>Índice vigente en G00: /exec?action=dictionary</li>
           </ul>
         </div>
         <button id="restart-button" class="restart-button" type="button">↻ Reiniciar partida</button>
@@ -77,8 +78,8 @@
     </section>
 
     <footer class="footer">
-      <span>RISNKLAB · HERRAMIENTA DE ACCESO</span>
-      <span>G00 · ISSEG</span>
+      <span>RISNKLAB · COORDINACIÓN DE RIESGOS FINANCIEROS</span>
+      <span>G00 · INSTITUTO DE SEGURIDAD SOCIAL DEL ESTADO DE GUANAJUATO</span>
     </footer>
   </main>
   <script src="js/config.js"></script>
