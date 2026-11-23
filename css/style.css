@@ -1,25 +1,85 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
-    margin: 0;
-
-    background: #222;
-
-    color: white;
-
-    font-family: Arial, sans-serif;
-
-    text-align: center;
-
+:root {
+  color-scheme: dark;
+  --bg: #080c11;
+  --panel: #111820;
+  --panel-soft: #0d141c;
+  --border: #202a34;
+  --text: #e7edf3;
+  --muted: #8b9aaa;
+  --accent: #4da3ff;
+  --green: #42d392;
+  font-family: Inter, system-ui, sans-serif;
 }
-
-canvas {
-
-    border: 2px solid white;
-
-    background: #111;
-
-    width: 400px;
-
-    height: 400px;
-
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 50% -20%, #17283a 0, var(--bg) 58%); color: var(--text); }
+button, a { font: inherit; }
+.app-shell { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+.topbar { min-height: 76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); }
+.brand { display:flex; gap:12px; align-items:center; color:inherit; text-decoration:none; }
+.brand-mark { width:38px; height:38px; display:grid; place-items:center; border:1px solid #315477; border-radius:10px; background:#102238; color:var(--accent); font:600 15px 'IBM Plex Mono', monospace; }
+.brand strong { display:block; font-size:15px; letter-spacing:.02em; }
+.brand small { display:block; margin-top:3px; color:var(--muted); font:10px 'IBM Plex Mono', monospace; letter-spacing:.12em; }
+.topbar-tag, .eyebrow, .game-badge, .footer { font-family:'IBM Plex Mono', monospace; letter-spacing:.1em; }
+.topbar-tag { color:var(--muted); font-size:10px; display:flex; align-items:center; gap:8px; }
+.status-dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 10px #42d39288; }
+.intro { padding:48px 0 30px; text-align:center; }
+.eyebrow { margin:0; color:var(--accent); font-size:10px; font-weight:600; }
+.intro h1 { margin:12px 0 10px; font-size:clamp(29px, 5vw, 44px); letter-spacing:-.045em; }
+.intro h1 span { color:var(--accent); }
+.intro-copy { margin:0 auto; max-width:540px; color:var(--muted); font-size:14px; line-height:1.7; }
+.game-layout { display:grid; grid-template-columns:minmax(0, 1.45fr) minmax(260px, .8fr); gap:18px; align-items:stretch; }
+.game-panel, .info-panel { border:1px solid var(--border); border-radius:16px; background:linear-gradient(145deg, #121b25, #0e151d); }
+.game-panel { padding:20px; min-width:0; }
+.panel-heading { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; }
+.panel-heading h2 { margin:5px 0 0; font-size:17px; }
+.game-badge { border:1px solid #294766; background:#102238; color:var(--accent); border-radius:6px; padding:6px 9px; font-size:10px; }
+.canvas-wrap { position:relative; width:min(100%, 480px); margin:0 auto; overflow:hidden; border:1px solid #293746; border-radius:10px; background:#080e14; }
+canvas { display:block; width:100%; height:auto; aspect-ratio:1; background:#080e14; image-rendering:pixelated; touch-action:none; }
+.info-panel { padding:20px; display:flex; flex-direction:column; gap:22px; }
+.score-card { padding:16px; border:1px solid var(--border); border-radius:11px; background:var(--panel-soft); }
+.score-line { display:flex; align-items:baseline; gap:5px; margin:8px 0 12px; font-family:'IBM Plex Mono', monospace; }
+.score-line strong { font-size:42px; letter-spacing:-.06em; }
+.score-line span { color:var(--muted); font-size:14px; }
+.progress-track { height:6px; border-radius:10px; background:#26313d; overflow:hidden; }
+.progress-bar { width:0%; height:100%; border-radius:10px; background:linear-gradient(90deg, #368de8, #65b5ff); transition:width .2s ease; }
+.score-status { margin:10px 0 0; color:var(--muted); font-size:11px; line-height:1.5; }
+.instructions ul { padding-left:17px; margin:12px 0 0; color:#aab7c4; font-size:12px; line-height:1.9; }
+.restart-button { border:1px solid #344454; border-radius:8px; background:#172330; color:var(--text); padding:11px 14px; cursor:pointer; font-size:12px; font-weight:600; transition:background .2s,border-color .2s; }
+.restart-button:hover { background:#203448; border-color:#4a6b89; }
+.security-note { margin:auto 0 0; color:#748393; font-size:10px; line-height:1.6; }
+.security-note span { display:inline-grid; place-items:center; width:15px; height:15px; margin-right:4px; border:1px solid #526477; border-radius:50%; }
+.controls-hint { margin:12px 0 0; text-align:center; color:var(--muted); font-size:10px; }
+.mobile-controls { display:none; }
+.unlock-overlay { position:absolute; inset:0; display:grid; place-items:center; padding:18px; background:#050a10dc; backdrop-filter:blur(5px); }
+.unlock-overlay[hidden] { display:none; }
+.unlock-card { width:min(100%, 330px); padding:24px 20px; border:1px solid #315d50; border-radius:13px; background:#101d1b; text-align:center; box-shadow:0 16px 60px #0008; }
+.unlock-icon { width:38px; height:38px; display:grid; place-items:center; margin:0 auto 14px; border-radius:50%; background:#153b30; color:var(--green); font-size:22px; }
+.unlock-card h2 { margin:8px 0; font-size:21px; }
+.unlock-card p:not(.eyebrow) { color:#aabbb5; font-size:12px; line-height:1.6; }
+.access-button { display:flex; justify-content:center; align-items:center; gap:9px; margin-top:18px; padding:12px 16px; border-radius:8px; background:var(--green); color:#062016; font-weight:700; font-size:12px; text-decoration:none; }
+.access-button:hover { filter:brightness(1.08); }
+.footer { display:flex; justify-content:space-between; gap:12px; padding:22px 2px 28px; color:#657484; font-size:9px; }
+@media (max-width: 720px) {
+  .app-shell { width:min(100% - 24px, 520px); }
+  .topbar { min-height:64px; }
+  .intro { padding:34px 4px 22px; }
+  .intro-copy { font-size:12px; }
+  .game-layout { grid-template-columns:1fr; gap:12px; }
+  .game-panel { padding:14px; }
+  .info-panel { padding:16px; gap:16px; }
+  .mobile-controls { display:flex; flex-direction:column; align-items:center; gap:6px; margin:15px auto 0; }
+  .control-middle { display:flex; gap:8px; }
+  .control-btn { width:48px; height:42px; border:1px solid #34485b; border-radius:9px; background:#172432; color:var(--text); font-size:20px; touch-action:manipulation; }
+  .control-btn:active { background:#24496b; }
+  .controls-hint { margin-top:8px; }
+  .score-line strong { font-size:34px; }
+  .footer { font-size:8px; }
+}
+@media (max-width: 360px) {
+  .topbar-tag { font-size:8px; }
+  .brand small { font-size:8px; }
+  .intro h1 { font-size:27px; }
+  .control-btn { width:44px; }
 }
