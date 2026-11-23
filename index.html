@@ -1,38 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>RisnkLab</title>
-
-    <link rel="stylesheet" href="css/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080c11">
+  <meta name="description" content="RiskLab — acceso a la plataforma de información G00.">
+  <title>RiskLab | Consulta API G00</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="RiskLab inicio">
+        <span class="brand-mark">RL</span>
+        <span><strong>RiskLab</strong><small>PLATAFORMA DE ACCESO</small></span>
+      </a>
+      <span class="topbar-tag"><span class="status-dot"></span> SISTEMA ACTIVO</span>
+    </header>
 
-    <h1>Al llegar a 25 puntos, se libera la fuente de la API: G00</h1>
+    <section class="intro">
+      <p class="eyebrow">DESAFÍO DE ACCESO</p>
+      <h1>Un objetivo. <span>25 puntos.</span></h1>
+      <p class="intro-copy">Completa el desafío para desbloquear el acceso a la plataforma de información G00.</p>
+    </section>
 
-    <div id="score">
-        Alcanzado: 0
-    </div>
+    <section class="game-layout" aria-label="Juego y puntuación">
+      <div class="game-panel">
+        <div class="panel-heading">
+          <div><span class="eyebrow">API:G00</span><h2>RisnkLab</h2></div>
+          <span class="game-badge">25 PTS</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="game" width="400" height="400" aria-label="Juego Snake"></canvas>
+          <div id="unlock-overlay" class="unlock-overlay" hidden>
+            <div class="unlock-card">
+              <span class="unlock-icon">✓</span>
+              <p class="eyebrow">OBJETIVO COMPLETADO</p>
+              <h2>Acceso desbloqueado</h2>
+              <p>G00-P00 API(1.0.4 2026)</p>
+              <a id="access-link" class="access-button" href="https://script.google.com/macros/s/AKfycbyWUQawZZ5XkBCw_PDr0hZsuXBDVl5bm8YZRkRwv2qbDXxoiXuhBMuTI3_8XEJqIuBL/exec" target="_blank" rel="noopener noreferrer">Ingresar a G00 <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-controls" aria-label="Controles táctiles">
+          <button class="control-btn control-up" data-direction="up" aria-label="Arriba">↑</button>
+          <div class="control-middle">
+            <button class="control-btn" data-direction="left" aria-label="Izquierda">←</button>
+            <button class="control-btn" data-direction="down" aria-label="Abajo">↓</button>
+            <button class="control-btn" data-direction="right" aria-label="Derecha">→</button>
+          </div>
+        </div>
+        <p class="controls-hint">Usa las flechas del teclado o los controles táctiles.</p>
+      </div>
 
-    <canvas
-        id="game"
-        width="400"
-        height="400">
-    </canvas>
+      <aside class="info-panel">
+        <div class="score-card">
+          <span class="eyebrow">TU PUNTUACIÓN</span>
+          <div class="score-line"><strong id="score-value">0</strong><span>/ 25</span></div>
+          <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+          <p id="score-status" class="score-status">25 pts para desbloquear.</p>
+        </div>
+        <div class="instructions">
+          <span class="eyebrow">¿CÓMO JUGAR?</span>
+          <ul>
+            <li>Dirige la serpiente hacia las manzanas.</li>
+            <li>Cada manzana suma un punto.</li>
+            <li>Evita chocar contra los bordes y contigo mismo.</li>
+            <li>Al llegar a 25 puntos se habilitará el acceso.</li>
+          </ul>
+        </div>
+        <button id="restart-button" class="restart-button" type="button">↻ Reiniciar partida</button>
+        <p class="security-note"><span>i</span> El desafío habilita el enlace en esta página; no sustituye los controles de acceso que deban configurarse en el servicio de destino.</p>
+      </aside>
+    </section>
 
-    <script src="js/config.js"></script>
-    <script src="js/game.js"></script>
-
+    <footer class="footer">
+      <span>RISNKLAB · HERRAMIENTA DE ACCESO</span>
+      <span>G00 · ISSEG</span>
+    </footer>
+  </main>
+  <script src="js/config.js"></script>
+  <script src="js/game.js"></script>
 </body>
-
 </html>
