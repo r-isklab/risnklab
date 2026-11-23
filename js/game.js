@@ -16,7 +16,27 @@ const BOARD_SIZE = canvas.width / CELL_SIZE;
 
 let score = 0;
 
-const scoreElement = document.getElementById("score");
+const scoreElement = document.getElementById("score-value");
+const progressBar = document.getElementById("progress-bar");
+const scoreStatus = document.getElementById("score-status");
+const unlockOverlay = document.getElementById("unlock-overlay");
+const restartButton = document.getElementById("restart-button");
+const TARGET_SCORE = 25;
+
+function updateScore() {
+    scoreElement.textContent = score;
+    progressBar.style.width = Math.min(score / TARGET_SCORE * 100, 100) + "%";
+    scoreStatus.textContent = score >= TARGET_SCORE
+        ? "Objetivo completado. Acceso habilitado."
+        : `Te faltan ${TARGET_SCORE - score} puntos para desbloquear.`;
+}
+
+function unlockAccess() {
+    if (score < TARGET_SCORE) return;
+    gameRunning = false;
+    unlockOverlay.hidden = false;
+    updateScore();
+}
 
 
 // =====================================================
@@ -583,9 +603,7 @@ function eatApple() {
 
     score++;
 
-    scoreElement.textContent =
-        "Puntos: " + score;
-
+    updateScore();
 
     // Activar animación
 
@@ -595,9 +613,12 @@ function eatApple() {
         Date.now() + 300;
 
 
-    // Nueva manzana
-
-    generateApple();
+    // Nueva manzana y validación del objetivo
+    if (score >= TARGET_SCORE) {
+        unlockAccess();
+    } else {
+        generateApple();
+    }
 
 }
 
@@ -811,6 +832,12 @@ document.addEventListener(
     function(event) {
 
 
+        if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(event.key)) {
+            event.preventDefault();
+        }
+
+        if (!gameRunning && !gameOver) return;
+
         if (
             event.key === "ArrowUp" &&
             direction !== "down"
@@ -897,9 +924,8 @@ function restartGame() {
 
     score = 0;
 
-    scoreElement.textContent =
-        "Puntos: 0";
-
+    updateScore();
+    unlockOverlay.hidden = true;
 
     gameRunning = true;
 
@@ -912,7 +938,31 @@ function restartGame() {
 
     setTimeout(
         startBlink,
-        3000
+        1000
     );
 
 }
+
+
+/* Controles táctiles */
+document.querySelectorAll("[data-direction]").forEach((button) => {
+    button.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        const nextDirection = button.dataset.direction;
+        const opposite = {
+            up: "down",
+            down: "up",
+            left: "right",
+            right: "left"
+        };
+        if (nextDirection !== opposite[direction] && gameRunning) {
+            direction = nextDirection;
+        }
+    });
+});
+
+restartButton.addEventListener("click", restartGame);
+
+// Actualización inicial de la interfaz
+updateScore();
+setTimeout(startBlink, 1000);
