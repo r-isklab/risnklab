@@ -784,16 +784,16 @@ function endGame() {
     ctx.font = "bold 36px Arial";
 
     ctx.fillText(
-        "perdiste :(",
+        "intenta de new",
         canvas.width / 2,
         canvas.height / 2 - 20
     );
 
 
-    ctx.font = "18px Arial";
+    ctx.font = "bold 17px Arial";
 
     ctx.fillText(
-        "con enter reinicias",
+        "click/touch/enter",
         canvas.width / 2,
         canvas.height / 2 + 25
     );
@@ -961,7 +961,12 @@ document.querySelectorAll("[data-direction]").forEach((button) => {
     });
 });
 
-restartButton.addEventListener("click", restartGame);
+canvas.addEventListener("pointerdown", (event) => {
+    if (gameOver) {
+        event.preventDefault();
+        restartGame();
+    }
+});
 
 // Actualización inicial de la interfaz
 updateScore();
