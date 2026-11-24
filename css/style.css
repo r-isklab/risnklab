@@ -54,7 +54,7 @@ button, a { font: inherit; }
 .panel-heading h2 { margin:5px 0 0; font-size:17px; }
 .game-badge { border:1px solid #294766; background:#102238; color:var(--accent); border-radius:6px; padding:6px 9px; font-size:10px; }
 .canvas-wrap { position:relative; width:min(100%, 480px); margin:0 auto; overflow:hidden; border:1px solid #293746; border-radius:10px; background:#080e14; }
-canvas { display:block; width:100%; height:auto; aspect-ratio:1; background:#080e14; image-rendering:pixelated; touch-action:none; }
+canvas { display:block; width:100%; height:auto; aspect-ratio:1; background:#080e14; image-rendering:pixelated; touch-action:none; user-select: none; -webkit-user-select: none; }
 .info-panel { padding:20px; display:flex; flex-direction:column; gap:22px; }
 .score-card { padding:16px; border:1px solid var(--border); border-radius:11px; background:var(--panel-soft); }
 .score-line { display:flex; align-items:baseline; gap:5px; margin:8px 0 12px; font-family:'IBM Plex Mono', monospace; }
@@ -68,7 +68,13 @@ canvas { display:block; width:100%; height:auto; aspect-ratio:1; background:#080
 .restart-button:hover { background:#203448; border-color:#4a6b89; }
 .security-note { margin:auto 0 0; color:#748393; font-size:10px; line-height:1.6; }
 .security-note span { display:inline-grid; place-items:center; width:15px; height:15px; margin-right:4px; border:1px solid #526477; border-radius:50%; }
-.controls-hint { margin:12px 0 0; text-align:center; color:var(--muted); font-size:10px; }
+.controls-hint {
+    margin: 14px 0 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
 .mobile-controls { display:none; }
 .unlock-overlay { position:absolute; inset:0; display:grid; place-items:center; padding:18px; background:#050a10dc; backdrop-filter:blur(5px); }
 .unlock-overlay[hidden] { display:none; }
@@ -91,7 +97,7 @@ canvas { display:block; width:100%; height:auto; aspect-ratio:1; background:#080
   .control-middle { display:flex; gap:8px; }
   .control-btn { width:48px; height:42px; border:1px solid #34485b; border-radius:9px; background:#172432; color:var(--text); font-size:20px; touch-action:manipulation; }
   .control-btn:active { background:#24496b; }
-  .controls-hint { margin-top:8px; }
+  .controls-hint { font-size: 12px; padding: 5px 8px; }
   .score-line strong { font-size:34px; }
   .footer { font-size:8px; }
 }
