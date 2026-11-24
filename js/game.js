@@ -1011,31 +1011,6 @@ function restartGame() {
 
 }
 
-
-/* Controles táctiles */
-document.querySelectorAll("[data-direction]").forEach((button) => {
-    button.addEventListener("pointerdown", (event) => {
-        event.preventDefault();
-        const nextDirection = button.dataset.direction;
-        const opposite = {
-            up: "down",
-            down: "up",
-            left: "right",
-            right: "left"
-        };
-        if (nextDirection !== opposite[direction] && gameRunning) {
-            direction = nextDirection;
-        }
-    });
-});
-
-canvas.addEventListener("pointerdown", (event) => {
-    if (gameOver) {
-        event.preventDefault();
-        restartGame();
-    }
-});
-
 // Actualización inicial de la interfaz
 updateScore();
 setTimeout(startBlink, 1000);
