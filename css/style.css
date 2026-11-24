@@ -45,7 +45,13 @@ button, a { font: inherit; }
 .intro { padding:48px 0 30px; text-align:center; }
 .eyebrow { margin:0; color:var(--accent); font-size:10px; font-weight:600; }
 .intro h1 { margin:12px 0 10px; font-size:clamp(29px, 5vw, 44px); letter-spacing:-.045em; }
-.intro h1 span { color:var(--accent); }
+.intro h1 span {
+    color: #4da3ff;
+}
+
+.intro h1 .lab {
+    color: #e7edf3;
+}
 .intro-copy { margin:0 auto; max-width:540px; color:var(--muted); font-size:14px; line-height:1.7; }
 .game-layout { display:grid; grid-template-columns:minmax(0, 1.45fr) minmax(260px, .8fr); gap:18px; align-items:stretch; }
 .game-panel, .info-panel { border:1px solid var(--border); border-radius:16px; background:linear-gradient(145deg, #121b25, #0e151d); }
