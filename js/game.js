@@ -890,6 +890,74 @@ document.addEventListener(
     }
 );
 
+// =====================================================
+// CONTROL POR DESLIZAMIENTO (SWIPE)
+// =====================================================
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+canvas.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+
+    touchStartX = event.clientX;
+    touchStartY = event.clientY;
+
+    if (canvas.setPointerCapture) {
+        canvas.setPointerCapture(event.pointerId);
+    }
+});
+
+canvas.addEventListener("pointerup", (event) => {
+    event.preventDefault();
+
+    const deltaX = event.clientX - touchStartX;
+    const deltaY = event.clientY - touchStartY;
+
+    // Si terminó la partida, tocar el tablero permite reiniciar.
+    if (gameOver) {
+        restartGame();
+        return;
+    }
+
+    if (!gameRunning) return;
+
+    // Evitar movimientos accidentales muy pequeños.
+    const minimumSwipe = 20;
+
+    if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < minimumSwipe) {
+        return;
+    }
+
+    let nextDirection;
+
+    // Determinar cuál fue el eje predominante.
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        nextDirection = deltaX > 0 ? "right" : "left";
+    } else {
+        nextDirection = deltaY > 0 ? "down" : "up";
+    }
+
+    // Evitar que la serpiente cambie directamente
+    // hacia la dirección opuesta.
+    const opposite = {
+        up: "down",
+        down: "up",
+        left: "right",
+        right: "left"
+    };
+
+    if (nextDirection !== opposite[direction]) {
+        direction = nextDirection;
+    }
+});
+
+canvas.addEventListener("pointercancel", () => {
+    touchStartX = 0;
+    touchStartY = 0;
+});
+
+
 
 // =====================================================
 // INICIAR
